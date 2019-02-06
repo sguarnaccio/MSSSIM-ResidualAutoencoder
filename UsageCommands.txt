@@ -1,0 +1,15 @@
+python train.py --modelName ConvAut --batch_size 256 --bitsPerPixel 64 --num_epochs 200 --multiGpu True --erlStop True --learning_rate 0.0005
+python test.py --modelName ConvAut --image jack4.jpg --imgDim 256
+
+
+python train.py --modelName resConvMSSSIML1 --residual True --batch_size 64 --bitsPerPixel 4 --num_epochs 90 --multiGpu True --learning_rate 0.0005 --erlStop True
+python train.py --modelName resConvMSSSIML1 --residual True --batch_size 64 --bitsPerPixel 4 --num_epochs 80 --multiGpu True --learning_rate 0.0005 --loadModel True --erlStop True 
+python test.py --modelName resConvMSSSIML1_rgb2 --image jack4.jpg --imgDim 256 --residual True --rec_steps 8
+
+
+
+
+python SSIMChartScript.py --modelName1 resConvMSSSIML1_rgb2 --modelName2 resConvMSSSIML1_rgb4 --modelName3 resConvMSSSIML1_rgb5 --averageSSIM True --encPatchBpp 4
+
+
+python ModelsCompScript.py --modelName1 resConvMSSSIML1_rgb2 --modelName2 resConvMSSSIML1_rgb4 --modelName3 resConvMSSSIML1_rgb5 --rec_steps 8 --residual True --averageSSIM True
